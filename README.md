@@ -6,5 +6,5 @@ swoole 目录下是以swoole扩展实现
 
     Config 配置文件目录
     DB 数据库操作接口目录
-    Root 项目根目录 php artisan start | status | stop | reload
+    Root 项目根目录 php artisan.php start | status | stop | reload
     Tasks 任务目录，自行添加需要执行的任务
