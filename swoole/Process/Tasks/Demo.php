@@ -7,7 +7,7 @@
  */
 namespace Process\Tasks;
 
-use DB\Model;
+use DB\DB;
 
 class Demo extends Base {
 
@@ -17,7 +17,7 @@ class Demo extends Base {
     {
         parent::__construct();
 
-        $this->instance = Model::instance();
+        $this->instance = DB::instance();
     }
 
     public function index()

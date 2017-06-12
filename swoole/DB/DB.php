@@ -11,7 +11,7 @@ use PDO;
  *
  * @package Core
  */
-class Model
+class DB
 {
     private static $instance;
 
@@ -24,7 +24,8 @@ class Model
 
     private function __construct()
     {
-
+        $config = require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'config.php';
+        $this->config = $config['DB'];
     }
 
     /**
@@ -247,9 +248,6 @@ class Model
      */
     private function master()
     {
-        $config = require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'config.php';
-        $this->config = $config['DB'];
-
         if ($this->masterPDO === null) {
             try {
                 $this->masterPDO = $this->connect($this->config);
@@ -278,8 +276,6 @@ class Model
     private function slave()
     {
         if ($this->slavePDO === null) {
-            $config = require dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'config.php';
-            $this->config = $config['DB'];
             if (isset($this->config['slave'])) {
                 if (isset($this->config['slave']['database_type'])) {
                     $slaves[] = $this->config['slave'];
